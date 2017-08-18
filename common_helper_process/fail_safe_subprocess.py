@@ -15,7 +15,8 @@ def execute_shell_command(shell_command):
 
 def execute_shell_command_get_return_code(shell_command):
     """
-    Execute a shell command and return STDOUT and STDERR in one combined result string.
+    Execute a shell command and return a tuple (program output, return code)
+    Program ouput includes STDOUT and STDERR.
     This function shall not raise any errors
 
     :param shell_command: command to execute
