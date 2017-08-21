@@ -1,4 +1,5 @@
 import unittest
+from time import time
 
 from common_helper_process import execute_shell_command
 from common_helper_process.fail_safe_subprocess import execute_shell_command_get_return_code
@@ -23,3 +24,11 @@ class TestProcessHelper(unittest.TestCase):
         output, rc = execute_shell_command_get_return_code("echo 'test 123' 1>&2 && exit 2")
         self.assertEqual(output, 'test 123\n', 'result not correct')
         self.assertEqual(rc, 2, 'return code not correct')
+
+    def test_execute_shell_command_time_out(self):
+        start_time = time()
+        output, rc = execute_shell_command_get_return_code("echo 'test 123' && for i in {1..10}; do sleep 1; done", timeout=1)
+        run_time = time() - start_time
+        self.assertEqual(output, 'test 123\n\n\nERROR: execution timed out!', 'timeout message not added')
+        self.assertEqual(rc, 1, 'return code not correct')
+        self.assertGreater(5, run_time, "command not aborted")
