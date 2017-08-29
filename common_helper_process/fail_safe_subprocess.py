@@ -30,18 +30,18 @@ def execute_shell_command_get_return_code(shell_command, timeout=None):
     :return: str, int
     """
     output = ""
-    rc = 1
+    return_code = 1
     pl = Popen(shell_command, shell=True, stdout=PIPE, stderr=STDOUT)
     try:
         output = pl.communicate(timeout=timeout)[0].decode('utf-8', errors='replace')
-        rc = pl.returncode
+        return_code = pl.returncode
     except TimeoutExpired:
         logging.warning("Execution timeout!")
         pl.kill()
         output = pl.communicate()[0].decode('utf-8', errors='replace')
         output += "\n\nERROR: execution timed out!"
-        rc = 1
-    return output, rc
+        return_code = 1
+    return output, return_code
 
 
 def execute_interactive_shell_command(shell_command, timeout=60, inputs={}):
