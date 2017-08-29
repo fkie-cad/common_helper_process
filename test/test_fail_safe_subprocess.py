@@ -53,5 +53,5 @@ class TestProcessHelper(unittest.TestCase):
         script_path = os.path.join(get_dir_of_file(__file__), 'data/interactive.sh')
         output, ret_code = execute_interactive_shell_command(script_path, timeout=2)
         assert 'give me some input' in output
-        assert 'Error: Execution timed out!'
+        assert '\n\nError: Execution timed out!' in output
         assert ret_code > 0

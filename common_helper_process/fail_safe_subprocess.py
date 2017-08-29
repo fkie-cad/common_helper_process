@@ -69,6 +69,7 @@ def execute_interactive_shell_command(shell_command, timeout=60, inputs={}):
         except pexpect.TIMEOUT:
             child.kill(SIGKILL)
             output += child.before
+            output += b'\n\nError: Execution timed out!'
             break
         except pexpect.EOF:
             output += child.before
