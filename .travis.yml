@@ -3,6 +3,8 @@ python:
   - "3.5"
   - "3.6"
 # command to install dependencies
-install: "python setup.py -q install"
+install: 
+  - "python setup.py -q install"
+  - "pip install pytest-pep8"
 # command to run tests
 script: pytest
