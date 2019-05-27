@@ -1,9 +1,12 @@
+import os
 import unittest
 from time import time
-import os
+
 from common_helper_files import get_dir_of_file
 
-from common_helper_process import execute_shell_command, execute_shell_command_get_return_code, execute_interactive_shell_command
+from common_helper_process import (
+    execute_interactive_shell_command, execute_shell_command, execute_shell_command_get_return_code
+)
 from common_helper_process.fail_safe_subprocess import _parse_inputs
 
 
