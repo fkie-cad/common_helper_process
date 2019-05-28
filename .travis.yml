@@ -7,7 +7,6 @@ install:
   - "pip install git+https://github.com/fkie-cad/common_helper_files.git"
   - "pip install ."
   - "pip install -U pytest"
-  - "py.test --version"
   - "pip install pytest-pep8 pytest-cov codecov"
 # command to run tests
 script: "pytest --cov-config .coveragerc --cov=./"
