@@ -1,5 +1,6 @@
 import os
 import unittest
+from subprocess import CalledProcessError
 from time import time
 
 from common_helper_files import get_dir_of_file
@@ -29,6 +30,12 @@ class TestProcessHelperPublic(unittest.TestCase):
         output, rc = execute_shell_command_get_return_code("echo 'test 123' 1>&2 && exit 2")
         self.assertEqual(output, 'test 123\n', 'result not correct')
         self.assertEqual(rc, 2, 'return code not correct')
+
+    def test_execute_shell_command_with_check(self):
+        with self.assertRaises(CalledProcessError):
+            execute_shell_command("exit 1", check=True)
+        with self.assertRaises(CalledProcessError):
+            execute_shell_command("exit 255", check=True)
 
     def test_execute_shell_command_time_out(self):
         start_time = time()
