@@ -16,7 +16,7 @@ def execute_shell_command(shell_command, timeout=None, check=False):
     :param timeout: kill process after timeout seconds
     :type: timeout: int, optional
     :param check: raise CalledProcessError if the return code is != 0
-    :type: timeout: bool
+    :type: check: bool
     :return: str
     """
     output, return_code = execute_shell_command_get_return_code(shell_command, timeout=timeout)
