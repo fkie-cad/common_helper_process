@@ -8,7 +8,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'pexpect',
-        'common_helper_files@git+https://github.com/fkie-cad/common_helper_files.git#egg=common_helper_files'
+        'common_helper_files @ git+https://github.com/fkie-cad/common_helper_files.git#egg=common_helper_files'
     ],
     description="Helper functions for handling processes.",
     author="Fraunhofer FKIE",
